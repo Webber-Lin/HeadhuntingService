@@ -1,0 +1,130 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:gravity="center"
+    android:orientation="vertical">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_weight="1"
+        android:orientation="horizontal">
+
+        <TextView
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:text="TextView"
+            android:visibility="invisible" />
+
+        <TextView
+            android:id="@+id/title"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:text="登入界面"
+            android:textAlignment="center"
+            android:textSize="30sp" />
+
+        <TextView
+            android:id="@+id/l_to_re"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:gravity="right"
+            android:text="没有账号？" />
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_weight="1"
+        android:orientation="horizontal">
+
+        <TextView
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:text="用户名"
+            android:textAlignment="textEnd"
+            android:textSize="18sp" />
+
+        <EditText
+            android:id="@+id/l_username"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="3"
+            android:ems="10"
+            android:inputType="textPersonName" />
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_weight="1"
+        android:orientation="horizontal">
+
+        <TextView
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:text="密码"
+            android:textAlignment="textEnd"
+            android:textSize="18sp" />
+
+        <EditText
+            android:id="@+id/l_userpsd"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="3"
+            android:ems="10"
+            android:inputType="textPassword"
+            android:maxLines="1" />
+
+    </LinearLayout>
+
+    <RadioGroup
+        android:id="@+id/l_role"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_weight="0"
+        android:checkedButton="@+id/role_1"
+        android:orientation="horizontal">
+
+        <RadioButton
+            android:id="@+id/role_1"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:checked="true"
+            android:text="求职者" />
+
+        <RadioButton
+            android:id="@+id/role_2"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:checked="false"
+            android:text="猎头" />
+
+    </RadioGroup>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_weight="1"
+        android:orientation="horizontal">
+
+        <Button
+            android:id="@+id/l_login"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:text="登录" />
+
+    </LinearLayout>
+
+</LinearLayout>

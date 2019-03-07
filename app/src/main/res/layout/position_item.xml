@@ -1,0 +1,73 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="vertical">
+
+
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="2dp"
+        android:background="#ffffff" />
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:background="#000000" />
+
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="horizontal">
+
+        <TextView
+            android:id="@+id/jobtext"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:paddingLeft="10dp"
+            android:text="jobtext"
+            android:textSize="18sp"
+            android:textStyle="bold" />
+
+        <TextView
+            android:id="@+id/salarytext"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1" />
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal">
+
+        <TextView
+            android:id="@+id/nametext"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:paddingLeft="10dp"
+            android:text="nametext" />
+
+        <TextView
+            android:id="@+id/addresstext"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:text="addresstext" />
+    </LinearLayout>
+
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:background="#000000" />
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="2dp"
+        android:background="#ffffff" />
+</LinearLayout>
