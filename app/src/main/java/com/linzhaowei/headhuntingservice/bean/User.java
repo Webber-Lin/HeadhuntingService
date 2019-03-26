@@ -1,24 +1,16 @@
 package com.linzhaowei.headhuntingservice.bean;
 
-public class User {
+import java.io.Serializable;
+
+public class User implements Serializable {
     private Integer id;
 
     private String username;
 
     private String userpsd;
 
-    private String name;
-
-    private String gender;
-
-    private Integer age;
-
-    private String address;
-
-    private String education;
-
-    private String tel;
-
+    private Integer status;
+    
     public Integer getId() {
         return id;
     }
@@ -43,66 +35,11 @@ public class User {
         this.userpsd = userpsd == null ? null : userpsd.trim();
     }
 
-    public String getName() {
-        return name;
+    public Integer getStatus() {
+        return status;
     }
 
-    public void setName(String name) {
-        this.name = name == null ? null : name.trim();
-    }
-
-    public String getGender() {
-        return gender;
-    }
-
-    public void setGender(String gender) {
-        this.gender = gender == null ? null : gender.trim();
-    }
-
-    public Integer getAge() {
-        return age;
-    }
-
-    public void setAge(Integer age) {
-        this.age = age;
-    }
-
-    public String getAddress() {
-        return address;
-    }
-
-    public void setAddress(String address) {
-        this.address = address == null ? null : address.trim();
-    }
-
-    public String getEducation() {
-        return education;
-    }
-
-    public void setEducation(String education) {
-        this.education = education == null ? null : education.trim();
-    }
-
-    public String getTel() {
-        return tel;
-    }
-
-    public void setTel(String tel) {
-        this.tel = tel == null ? null : tel.trim();
-    }
-
-    @Override
-    public String toString() {
-        return "User{" +
-                "id=" + id +
-                ", username='" + username + '\'' +
-                ", userpsd='" + userpsd + '\'' +
-                ", name='" + name + '\'' +
-                ", gender='" + gender + '\'' +
-                ", age=" + age +
-                ", address='" + address + '\'' +
-                ", education='" + education + '\'' +
-                ", tel='" + tel + '\'' +
-                '}';
+    public void setStatus(Integer status) {
+        this.status = status;
     }
 }

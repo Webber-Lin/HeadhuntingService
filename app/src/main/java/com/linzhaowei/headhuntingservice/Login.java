@@ -1,6 +1,8 @@
 package com.linzhaowei.headhuntingservice;
 
+import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
@@ -11,6 +13,9 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.alibaba.fastjson.JSON;
+import com.alibaba.fastjson.JSONArray;
+import com.alibaba.fastjson.JSONObject;
+import com.alibaba.fastjson.TypeReference;
 import com.linzhaowei.headhuntingservice.bean.User;
 import com.linzhaowei.headhuntingservice.utils.HttpUtils;
 import com.linzhaowei.headhuntingservice.utils.Ip;
@@ -99,10 +104,19 @@ public class Login extends AppCompatActivity implements View.OnClickListener{
 
                 try{
                     final String result=httpUtils.post(Ip.ip+"/user/login",str);
-                    Log.d("user", user.toString());
+
+                    JSONArray jsonArray=JSON.parseArray(result);
+                    JSONObject jsonObject=jsonArray.getJSONObject(0);
                     runOnUiThread(() -> {
-                        if("true".equals(result)){
+                        if(jsonObject.getInteger("id")!=null){
+                            SharedPreferences sharedPreferences=getSharedPreferences("user", Context.MODE_PRIVATE);
+                            SharedPreferences.Editor editor = sharedPreferences.edit();
+                            editor.putInt("id",jsonObject.getInteger("id"));
+                            editor.apply();
                             Toast.makeText(Login.this,"登录成功",Toast.LENGTH_SHORT).show();
+                            Intent intent=new Intent(Login.this,ChoseStatus.class);
+                            startActivity(intent);
+                            finish();
                         }else {
                             Toast.makeText(Login.this,"登录失败",Toast.LENGTH_SHORT).show();
                         }
