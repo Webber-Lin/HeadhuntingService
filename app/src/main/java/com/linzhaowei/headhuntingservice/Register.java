@@ -5,6 +5,7 @@ import android.os.Handler;
 import android.os.Message;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
@@ -13,9 +14,14 @@ import android.widget.RadioGroup;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.alibaba.fastjson.JSON;
 import com.hyphenate.chat.EMClient;
 import com.hyphenate.exceptions.HyphenateException;
+import com.linzhaowei.headhuntingservice.bean.User;
+import com.linzhaowei.headhuntingservice.utils.HttpUtils;
 import com.linzhaowei.headhuntingservice.utils.Ip;
+
+import java.io.IOException;
 
 import okhttp3.OkHttpClient;
 import okhttp3.Request;
@@ -26,25 +32,12 @@ import okhttp3.Request;
  */
 public class Register extends AppCompatActivity implements View.OnClickListener{
 
-
-    private TextView to_re2;           //跳转猎头
     private EditText username;         //用户名
     private EditText userpsd;          //密码
     private EditText userpsd2;         //再次输入密码
-    private EditText realname;         //真实姓名
-    private RadioGroup sex;               //性别
-    private RadioButton what_sex;       //性别
-    private EditText email;             //E_mail
-    private EditText education;         //学历
-    private EditText tel;                //电话
-    private EditText native_place;      //籍贯
     private Button r_register;           //注册按钮
     private TextView existing_account;  //已有账号跳转登录
 
-
-
-    public static final int REGISTER_OK=1;      //注册成功
-    public static final int REGISTER_FAIL=2;   //注册失败
 
 
     @Override
@@ -62,7 +55,6 @@ public class Register extends AppCompatActivity implements View.OnClickListener{
         username=findViewById(R.id.r_username);
         userpsd=findViewById(R.id.r_userpsd);
         userpsd2=findViewById(R.id.r_userpsd2);
-        what_sex=findViewById(sex.getCheckedRadioButtonId());
         r_register=findViewById(R.id.r_register);
         existing_account=findViewById(R.id.r_existing_account);
     }
@@ -72,7 +64,6 @@ public class Register extends AppCompatActivity implements View.OnClickListener{
      * 绑定事件
      */
     private void setEvents(){
-        to_re2.setOnClickListener(this);
         r_register.setOnClickListener(this);
         existing_account.setOnClickListener(this);
     }
@@ -84,13 +75,10 @@ public class Register extends AppCompatActivity implements View.OnClickListener{
     @Override
     public void onClick(View v) {
         switch (v.getId()){
-
             case R.id.r_register:
-                Register_check();
+                registerCheck();
 
                 break;
-
-
 
             case R.id.r_existing_account:
                 Intent intent2=new Intent(this,Login.class);
@@ -104,31 +92,12 @@ public class Register extends AppCompatActivity implements View.OnClickListener{
 
     }
 
-    /**
-     * 异步消息处理机制
-     */
-    private Handler handler=new Handler(){
-        @Override
-        public void handleMessage(Message msg) {
-            switch (msg.what){
-                case REGISTER_OK:
-                    Toast.makeText(Register.this,"注册成功！",Toast.LENGTH_SHORT).show();
-                    Intent intent=new Intent(Register.this,Login.class);
-                    startActivity(intent);
-                    break;
-                case REGISTER_FAIL:
-                    Toast.makeText(Register.this,"请检查输入是否正确，或用户名已存在",Toast.LENGTH_SHORT).show();
-                    break;
-                default:
-                    break;
-            }
-        }
-    };
+
 
     /**
      * 注册检查
      */
-    private void Register_check(){
+    private void registerCheck(){
         if(username.getText().toString().trim().equals("")){
             Toast.makeText(Register.this,"请输入用户名",Toast.LENGTH_SHORT).show();
         }else if(userpsd.getText().toString().trim().equals("")){
@@ -137,84 +106,39 @@ public class Register extends AppCompatActivity implements View.OnClickListener{
             Toast.makeText(Register.this,"请再次输入密码",Toast.LENGTH_SHORT).show();
         }else if(!userpsd.getText().toString().trim().equals(userpsd2.getText().toString())){
             Toast.makeText(Register.this,"两次密码不一致",Toast.LENGTH_SHORT).show();
-        }else if(realname.getText().toString().trim().equals("")){
-            Toast.makeText(Register.this,"请输入真实姓名",Toast.LENGTH_SHORT).show();
-        } else if(email.getText().toString().trim().equals("")){
-            Toast.makeText(Register.this,"请输入E_mail",Toast.LENGTH_SHORT).show();
-        }else if(education.getText().toString().trim().equals("")){
-            Toast.makeText(Register.this,"请输入学历",Toast.LENGTH_SHORT).show();
-        }else if(tel.getText().toString().trim().equals("")){
-            Toast.makeText(Register.this,"请输入电话",Toast.LENGTH_SHORT).show();
-        }else if(native_place.getText().toString().trim().equals("")){
-            Toast.makeText(Register.this,"请输入籍贯",Toast.LENGTH_SHORT).show();
         }else {
-            ECRegister();
+            register();
         }
     }
 
+    private void register(){
+        User user=new User();
+        user.setUsername(username.getText().toString().trim());
+        user.setUserpsd(userpsd.getText().toString().trim());
+        String str= JSON.toJSONString(user);
 
-    /**
-     * 注册环信账号
-     */
-    private void ECRegister(){
-        new Thread(new Runnable() {
+        new Thread(){
             @Override
             public void run() {
+                HttpUtils httpUtils=new HttpUtils();
+
                 try{
-                    EMClient.getInstance().createAccount(username.getText().toString().trim(), userpsd.getText().toString().trim());
-                    checkRegister();
-                }catch (final HyphenateException e){
-                    runOnUiThread(new Runnable() {
-                        @Override
-                        public void run() {
+                    final String result=httpUtils.post(Ip.ip+"/user/register",str);
+                    runOnUiThread(() -> {
+                        if("true".equals(result)){
+                            Toast.makeText(Register.this,"注册成功",Toast.LENGTH_SHORT).show();
+                            Intent intent=new Intent(Register.this,Login.class);
+                            startActivity(intent);
+                            finish();
+                        }else {
                             Toast.makeText(Register.this,"注册失败",Toast.LENGTH_SHORT).show();
                         }
                     });
-                }
-            }
-        }).start();
-    }
-
-
-    /**
-     * 注册并验证是否成功
-     */
-    private void checkRegister(){
-        new Thread(new Runnable() {
-            @Override
-            public void run() {
-                try{
-                    OkHttpClient client=new OkHttpClient();
-                    String str = Ip.ip+"/headhuntingservice/checkRegister.php?"
-                            + "username=" + username.getText().toString().trim()
-                            + "&userpassword=" + userpsd.getText().toString().trim()
-                            + "&realname=" + realname.getText().toString().trim()
-                            + "&sex=" + what_sex.getText().toString()
-                            + "&e_mail=" + email.getText().toString().trim()
-                            + "&education=" + education.getText().toString().trim()
-                            + "&telephone=" + tel.getText().toString().trim()
-                            + "&native_place=" + native_place.getText().toString().trim();
-                    Request request=new Request.Builder()
-                            .url(str)
-                            .build();
-
-                    okhttp3.Response response=client.newCall(request).execute();
-                    String responseData=response.body().string();
-
-                    Message message=new Message();
-                    if(responseData.equals("0")) {
-                        message.what=REGISTER_OK;
-                        handler.sendMessage(message);
-                    }else {
-                        message.what=REGISTER_FAIL;
-                        handler.sendMessage(message);
-                    }
-                }catch (Exception e){
+                } catch (IOException e) {
                     e.printStackTrace();
                 }
             }
-        }).start();
+        }.start();
     }
-
 
 }
