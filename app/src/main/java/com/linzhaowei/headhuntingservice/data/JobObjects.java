@@ -1,7 +1,7 @@
 package com.linzhaowei.headhuntingservice.data;
 
 
-import com.linzhaowei.headhuntingservice.utils.Ipv4;
+import com.linzhaowei.headhuntingservice.utils.Ip;
 
 import org.json.JSONArray;
 import org.json.JSONObject;
@@ -63,7 +63,7 @@ public class JobObjects implements Serializable {
                 try{
                     OkHttpClient client=new OkHttpClient();
 
-                    String str = Ipv4.ipv4+"/headhuntingservice/setJobObjects.php?id="+id;
+                    String str = Ip.ip+"/headhuntingservice/setJobObjects.php?id="+id;
 
                     Request request=new Request.Builder()
                             .url(str)
@@ -103,7 +103,7 @@ public class JobObjects implements Serializable {
                 try{
                     OkHttpClient client=new OkHttpClient();
 
-                    String str = Ipv4.ipv4+"/headhuntingservice/setRealname.php?username="+username;
+                    String str = Ip.ip+"/headhuntingservice/setRealname.php?username="+username;
 
                     Request request=new Request.Builder()
                             .url(str)

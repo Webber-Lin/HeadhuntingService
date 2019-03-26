@@ -9,7 +9,7 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
 import com.linzhaowei.headhuntingservice.data.Applicant;
-import com.linzhaowei.headhuntingservice.utils.Ipv4;
+import com.linzhaowei.headhuntingservice.utils.Ip;
 import okhttp3.OkHttpClient;
 import okhttp3.Request;
 
@@ -102,7 +102,7 @@ public class AddJobObjective extends AppCompatActivity implements View.OnClickLi
                 try {
                     OkHttpClient client = new OkHttpClient();
 
-                    String str = Ipv4.ipv4 + "/headhuntingservice/addJobObjective.php?username=" +
+                    String str = Ip.ip + "/headhuntingservice/addJobObjective.php?username=" +
                             applicant.getUsername() +
                             "&job=" + job.getText().toString().trim() +
                             "&address=" + address.getText().toString().trim();

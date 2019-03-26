@@ -15,7 +15,7 @@ import android.widget.EditText;
 
 import com.linzhaowei.headhuntingservice.data.Applicant;
 import com.linzhaowei.headhuntingservice.ApplicantMain;
-import com.linzhaowei.headhuntingservice.utils.Ipv4;
+import com.linzhaowei.headhuntingservice.utils.Ip;
 import com.linzhaowei.headhuntingservice.data.JobInformation;
 import com.linzhaowei.headhuntingservice.R;
 import com.linzhaowei.headhuntingservice.adapter.PositionAdapter;
@@ -107,7 +107,7 @@ public class PositionFragment extends Fragment {
                 try {
                     OkHttpClient client = new OkHttpClient();
 
-                    String str = Ipv4.ipv4 + "/headhuntingservice/getAllJobInformation.php";
+                    String str = Ip.ip + "/headhuntingservice/getAllJobInformation.php";
 
                     Request request = new Request.Builder()
                             .url(str)

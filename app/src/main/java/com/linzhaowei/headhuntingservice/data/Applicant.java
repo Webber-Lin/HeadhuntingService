@@ -1,7 +1,7 @@
 package com.linzhaowei.headhuntingservice.data;
 
 
-import com.linzhaowei.headhuntingservice.utils.Ipv4;
+import com.linzhaowei.headhuntingservice.utils.Ip;
 
 import org.json.JSONArray;
 import org.json.JSONObject;
@@ -40,7 +40,7 @@ public class Applicant implements Serializable {
             public void run() {
                 try {
                     OkHttpClient client = new OkHttpClient();
-                    String str=Ipv4.ipv4+"/headhuntingservice/getallinf.php?username="+ username;
+                    String str= Ip.ip+"/headhuntingservice/getallinf.php?username="+ username;
                     Request request = new Request.Builder()
                             .url(str)
                             .build();

@@ -15,7 +15,7 @@ import android.widget.Toast;
 
 import com.hyphenate.chat.EMClient;
 import com.hyphenate.exceptions.HyphenateException;
-import com.linzhaowei.headhuntingservice.utils.Ipv4;
+import com.linzhaowei.headhuntingservice.utils.Ip;
 
 import okhttp3.OkHttpClient;
 import okhttp3.Request;
@@ -59,17 +59,10 @@ public class Register extends AppCompatActivity implements View.OnClickListener{
      * 绑定组件
      */
     private void initViews(){
-        to_re2=findViewById(R.id.r_re2);
         username=findViewById(R.id.r_username);
         userpsd=findViewById(R.id.r_userpsd);
         userpsd2=findViewById(R.id.r_userpsd2);
-        realname=findViewById(R.id.r_realname);
-        sex=findViewById(R.id.r_sex);
         what_sex=findViewById(sex.getCheckedRadioButtonId());
-        email=findViewById(R.id.r_email);
-        education=findViewById(R.id.r_education);
-        tel=findViewById(R.id.r_tel);
-        native_place=findViewById(R.id.r_nativeplace);
         r_register=findViewById(R.id.r_register);
         existing_account=findViewById(R.id.r_existing_account);
     }
@@ -97,11 +90,7 @@ public class Register extends AppCompatActivity implements View.OnClickListener{
 
                 break;
 
-            case R.id.r_re2:
-                Intent intent=new Intent(this,Register2.class);
-                startActivity(intent);
-                finish();
-                break;
+
 
             case R.id.r_existing_account:
                 Intent intent2=new Intent(this,Login.class);
@@ -196,7 +185,7 @@ public class Register extends AppCompatActivity implements View.OnClickListener{
             public void run() {
                 try{
                     OkHttpClient client=new OkHttpClient();
-                    String str =Ipv4.ipv4+"/headhuntingservice/checkRegister.php?"
+                    String str = Ip.ip+"/headhuntingservice/checkRegister.php?"
                             + "username=" + username.getText().toString().trim()
                             + "&userpassword=" + userpsd.getText().toString().trim()
                             + "&realname=" + realname.getText().toString().trim()

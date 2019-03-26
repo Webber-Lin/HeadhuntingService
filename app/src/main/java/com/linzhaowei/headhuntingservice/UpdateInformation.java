@@ -23,13 +23,7 @@ public class UpdateInformation extends AppCompatActivity {
 
 
     private void initViews(){
-        realname=findViewById(R.id.r_realname);
-        sex=findViewById(R.id.r_sex);
-        what_sex=findViewById(sex.getCheckedRadioButtonId());
-        email=findViewById(R.id.r_email);
-        education=findViewById(R.id.r_education);
-        tel=findViewById(R.id.r_tel);
-        native_place=findViewById(R.id.r_nativeplace);
+
     }
 
 }

@@ -1,6 +1,6 @@
 package com.linzhaowei.headhuntingservice.data;
 
-import com.linzhaowei.headhuntingservice.utils.Ipv4;
+import com.linzhaowei.headhuntingservice.utils.Ip;
 
 import org.json.JSONArray;
 import org.json.JSONObject;
@@ -40,7 +40,7 @@ public class JobInformation {
                 try {
                     OkHttpClient client = new OkHttpClient();
 
-                    String str = Ipv4.ipv4 + "/headhuntingservice/setJobInformation.php?id=" + id;
+                    String str = Ip.ip + "/headhuntingservice/setJobInformation.php?id=" + id;
 
                     Request request = new Request.Builder()
                             .url(str)
@@ -82,7 +82,7 @@ public class JobInformation {
                 try {
                     OkHttpClient client = new OkHttpClient();
 
-                    String str = Ipv4.ipv4 + "/headhuntingservice/setRealname2.php?username=" + username;
+                    String str = Ip.ip + "/headhuntingservice/setRealname2.php?username=" + username;
 
                     Request request = new Request.Builder()
                             .url(str)

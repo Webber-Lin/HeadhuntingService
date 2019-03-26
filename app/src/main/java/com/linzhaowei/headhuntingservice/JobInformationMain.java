@@ -8,7 +8,7 @@ import android.support.v7.widget.RecyclerView;
 import com.linzhaowei.headhuntingservice.adapter.JobInformationAdapter;
 import com.linzhaowei.headhuntingservice.data.Interviewer;
 import com.linzhaowei.headhuntingservice.data.JobInformation;
-import com.linzhaowei.headhuntingservice.utils.Ipv4;
+import com.linzhaowei.headhuntingservice.utils.Ip;
 
 import org.json.JSONArray;
 import org.json.JSONObject;
@@ -64,7 +64,7 @@ public class JobInformationMain extends AppCompatActivity {
                 try{
                     OkHttpClient client=new OkHttpClient();
 
-                    String str = Ipv4.ipv4+"/headhuntingservice/getalljobobjective.php";
+                    String str = Ip.ip+"/headhuntingservice/getalljobobjective.php";
 
                     Request request=new Request.Builder()
                             .url(str)

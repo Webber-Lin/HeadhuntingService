@@ -16,7 +16,7 @@ import android.widget.EditText;
 
 import com.linzhaowei.headhuntingservice.data.Interviewer;
 import com.linzhaowei.headhuntingservice.InterviewerMain;
-import com.linzhaowei.headhuntingservice.utils.Ipv4;
+import com.linzhaowei.headhuntingservice.utils.Ip;
 import com.linzhaowei.headhuntingservice.data.JobObjects;
 import com.linzhaowei.headhuntingservice.R;
 import com.linzhaowei.headhuntingservice.adapter.PositionInterviewerAdapter;
@@ -103,7 +103,7 @@ public class PositionInterviewerFragment extends Fragment {
                 try{
                     OkHttpClient client=new OkHttpClient();
 
-                    String str = Ipv4.ipv4+"/headhuntingservice/getalljobobjective.php";
+                    String str = Ip.ip+"/headhuntingservice/getalljobobjective.php";
 
                     Request request=new Request.Builder()
                             .url(str)

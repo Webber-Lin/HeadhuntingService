@@ -11,7 +11,7 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.linzhaowei.headhuntingservice.data.Interviewer;
-import com.linzhaowei.headhuntingservice.utils.Ipv4;
+import com.linzhaowei.headhuntingservice.utils.Ip;
 
 import okhttp3.OkHttpClient;
 import okhttp3.Request;
@@ -119,7 +119,7 @@ public class InterviewerPersonalInformation extends AppCompatActivity implements
             public void run() {
                 try{
                     OkHttpClient client=new OkHttpClient();
-                    String str = Ipv4.ipv4+"/headhuntingservice/checkInterviewerInformation.php?username=" +interviewer.getUsername();
+                    String str = Ip.ip+"/headhuntingservice/checkInterviewerInformation.php?username=" +interviewer.getUsername();
                     Request request=new Request.Builder()
                             .url(str)
                             .build();
@@ -146,7 +146,7 @@ public class InterviewerPersonalInformation extends AppCompatActivity implements
             public void run() {
                 try{
                     OkHttpClient client=new OkHttpClient();
-                    String str = Ipv4.ipv4+"/headhuntingservice/getInterviewerInformation.php?username=" +interviewer.getUsername();
+                    String str = Ip.ip+"/headhuntingservice/getInterviewerInformation.php?username=" +interviewer.getUsername();
                     Request request=new Request.Builder()
                             .url(str)
                             .build();
@@ -176,7 +176,7 @@ public class InterviewerPersonalInformation extends AppCompatActivity implements
             public void run() {
                 try{
                     OkHttpClient client=new OkHttpClient();
-                    String str = Ipv4.ipv4+"/headhuntingservice/updateInterviewerInformation.php?" +
+                    String str = Ip.ip+"/headhuntingservice/updateInterviewerInformation.php?" +
                             "username=" +interviewer.getUsername()+
                             "&information="+inteinf.getText().toString();
                     Request request=new Request.Builder()

@@ -86,32 +86,6 @@
 
     </LinearLayout>
 
-    <RadioGroup
-        android:id="@+id/l_role"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_weight="0"
-        android:checkedButton="@+id/role_1"
-        android:orientation="horizontal">
-
-        <RadioButton
-            android:id="@+id/role_1"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_weight="1"
-            android:checked="true"
-            android:text="求职者" />
-
-        <RadioButton
-            android:id="@+id/role_2"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_weight="1"
-            android:checked="false"
-            android:text="猎头" />
-
-    </RadioGroup>
-
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"

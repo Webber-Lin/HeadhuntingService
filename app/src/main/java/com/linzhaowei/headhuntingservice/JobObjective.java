@@ -16,7 +16,7 @@ import android.widget.Button;
 import com.linzhaowei.headhuntingservice.adapter.JobObjectiveAdapter;
 import com.linzhaowei.headhuntingservice.data.Applicant;
 import com.linzhaowei.headhuntingservice.data.JobObjects;
-import com.linzhaowei.headhuntingservice.utils.Ipv4;
+import com.linzhaowei.headhuntingservice.utils.Ip;
 
 import org.json.JSONArray;
 
@@ -123,7 +123,7 @@ public class JobObjective extends AppCompatActivity implements View.OnClickListe
                 try{
                     OkHttpClient client=new OkHttpClient();
 
-                    String str = Ipv4.ipv4+"/headhuntingservice/getjobobjective.php?username="+
+                    String str = Ip.ip+"/headhuntingservice/getjobobjective.php?username="+
                             applicant.getUsername();
 
                     Request request=new Request.Builder()

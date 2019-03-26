@@ -11,7 +11,7 @@ import android.widget.TextView;
 import com.hyphenate.easeui.EaseConstant;
 import com.linzhaowei.headhuntingservice.data.Applicant;
 import com.linzhaowei.headhuntingservice.data.JobObjects;
-import com.linzhaowei.headhuntingservice.utils.Ipv4;
+import com.linzhaowei.headhuntingservice.utils.Ip;
 import okhttp3.OkHttpClient;
 import okhttp3.Request;
 
@@ -115,7 +115,7 @@ public class JobObjectiveCard extends AppCompatActivity implements View.OnClickL
             public void run() {
                 try {
                     OkHttpClient client = new OkHttpClient();
-                    String str = Ipv4.ipv4 + "/headhuntingservice/getresume.php?username=" + applicant.getUsername();
+                    String str = Ip.ip + "/headhuntingservice/getresume.php?username=" + applicant.getUsername();
                     Request request = new Request.Builder()
                             .url(str)
                             .build();

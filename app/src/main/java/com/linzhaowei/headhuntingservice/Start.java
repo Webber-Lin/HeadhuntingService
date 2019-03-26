@@ -24,7 +24,6 @@ public class Start extends AppCompatActivity implements View.OnClickListener{
         initViews();
         setEvents();
 
-        EMClient.getInstance().logout(true);  //退出环信登录
 
     }
 
